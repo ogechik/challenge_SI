@@ -1,15 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "challenge-app.fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
-    {{- include "challenge-app.labels" . | nindent 4 }}
+    app: {{ .Chart.Name }}
 spec:
-  type: {{ .Values.service.type }}
+  type: LoadBalancer
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - port: 80
+      targetPort: 8000
   selector:
-    {{- include "challenge-app.selectorLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}
