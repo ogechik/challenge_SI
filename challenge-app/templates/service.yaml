@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "challenge_helm.fullname" . }}
+  name: {{ include "challenge-app.fullname" . }}
   labels:
-    {{- include "challenge_helm.labels" . | nindent 4 }}
+    {{- include "challenge-app.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "challenge_helm.selectorLabels" . | nindent 4 }}
+    {{- include "challenge-app.selectorLabels" . | nindent 4 }}
