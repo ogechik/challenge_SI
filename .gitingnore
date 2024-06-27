@@ -1,0 +1,36 @@
+# Python
+*.pyc
+*.pyo
+__pycache__
+
+# Django
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+media/
+
+# Virtualenv
+venv/
+env/
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+# Helm
+challenge_helm/
+
+# Ignore IDE/Editor specific files
+.vscode/
+.idea/
+
+# Ignore system files
+*.DS_Store
+Thumbs.db
+
+# Ignore local environment variables
+.env
+.env.*
