@@ -15,7 +15,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class CreateOrderSerializer(serializers.Serializer):
-    customer_id = serializers.IntegerField(required=True)
     phone_number = serializers.CharField(required=True)
     item = serializers.CharField(required=True)
     amount = serializers.IntegerField(required=True)
