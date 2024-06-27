@@ -88,17 +88,16 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer = CreateOrderSerializer(data=request.data)
         if serializer.is_valid():
             try:
-                customer_id = serializer.validated_data['customer_id']
                 item = serializer.validated_data['item']
                 amount = serializer.validated_data['amount']
                 phone_number = serializer.validated_data['phone_number']
 
                 # get customer
-                customer = Customer.objects.get(pk=customer_id)
+                customer = Customer.objects.get(pk=request.user.id)
 
                 # create new order
                 new_order = Order.objects.create(
-                    customer_id=customer_id,
+                    customer_id=request.user.id,
                     item=item,
                     amount=amount,
                 )
