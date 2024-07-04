@@ -65,7 +65,7 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm upgrade --install challenge-release ./challenge_si_app -- values ./challenge_si_app/values.yaml
+          helm upgrade --install challenge-release ./challenge_si_app --values ./challenge_si_app/values.yaml
 
       - name: Make migrations
         run: |
