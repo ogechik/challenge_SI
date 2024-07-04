@@ -13,19 +13,16 @@ spec:
         app: {{.Values.dbName}}
     spec:
       containers:
-        - name: db-node
-          image: "{{.Values.dbImage.name}}:{{.Values.dbImage.tag}}"
+        - name: postgres_db
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
           env:
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: challenge-env
                   key: DB_NAME
-            - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: challenge-env
-                  key: DB_PORT
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
