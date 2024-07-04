@@ -1,18 +1,15 @@
-from django.shortcuts import redirect
+import requests
 from django.conf import settings
+from django.shortcuts import redirect
 from django.utils.http import urlencode
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
-
-from app.at_client import sms
-from app.permission import HasPermission
-from app.serializers import CustomerSerializer, OrderSerializer, CreateOrderSerializer
-import requests
+from rest_framework.views import APIView
 
 from app.models import Customer, Order
+from app.permission import HasPermission
+from app.serializers import CustomerSerializer, OrderSerializer, CreateOrderSerializer
 from app.utils import send_order_creation_sms
 
 
