@@ -47,7 +47,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: eu-west-3
 
       - name: Install kubectl
         run: |
@@ -65,6 +65,9 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          helm repo add stable https://charts.helm.sh/stable
-          helm upgrade --install my-release ./challenge-app --set image.repository=${{ secrets.DOCKER_USERNAME }}/challenge_si-web --set image.tag=latest
-          
+          helm upgrade --install challenge-release ./challenge_si_app -- values ./challenge_si_app/values.yaml
+
+      - name: Make migrations
+        run: |
+          POD_NAME=$(kubectl get pods -l app=challenge-app -o jsonpath="{.items[0].metadata.name}")
+          kubectl exec $POD_NAME -- python manage.py migrate
