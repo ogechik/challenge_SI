@@ -6,7 +6,7 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 443
+      port: 80
       targetPort: 8000
   selector:
     app: {{ .Values.appName }}
