@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/challenge_si-web:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/challenge:latest
 
   deploy:
     runs-on: ubuntu-latest
