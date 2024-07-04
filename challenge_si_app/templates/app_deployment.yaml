@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: challenge-node
+          image: {{.Values.appImage.name}}:{{.Values.appImage.tag}}
+          env:
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_PASSWORD
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_PORT
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: GOOGLE_CLIENT_ID
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: GOOGLE_CLIENT_SECRET
+            - name: GOOGLE_REDIRECT_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: GOOGLE_REDIRECT_URI
+            - name: AFRICASTALKING_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: AFRICASTALKING_USERNAME
+            - name: AFRICASTALKING_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: AFRICASTALKING_API_KEY

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.dbName}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{.Values.dbName}}
+  template:
+    metadata:
+      labels:
+        app: {{.Values.dbName}}
+    spec:
+      containers:
+        - name: db-node
+          image: ogechik/challenge_db
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_NAME
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_PORT
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: challenge-env
+                  key: DB_PASSWORD

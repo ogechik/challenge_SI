@@ -1,0 +1,10 @@
+appName: challenge-app-dev
+appImage:
+  name: ogechik/challenge
+  tag: latest
+appService:
+  name: challenge-app-backend-dev
+dbName: challenge-db-dev
+dbImage:
+  name: ogechik/challenge_db
+  tag: latest
