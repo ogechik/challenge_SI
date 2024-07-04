@@ -67,6 +67,10 @@ jobs:
         run: |
           helm upgrade --install challenge-release ./challenge_si_app --values ./challenge_si_app/values.yaml
 
+      - name: Wait for deployment to be ready
+        run: |
+          kubectl rollout status deployment/challenge-app
+
       - name: Make migrations
         run: |
           POD_NAME=$(kubectl get pods -l app=challenge-app -o jsonpath="{.items[0].metadata.name}")
