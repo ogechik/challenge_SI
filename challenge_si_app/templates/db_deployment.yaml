@@ -13,7 +13,7 @@ spec:
         app: {{.Values.dbName}}
     spec:
       containers:
-        - name: postgres_db
+        - name: postgres-db
           image: postgres:latest
           ports:
             - containerPort: 5432
