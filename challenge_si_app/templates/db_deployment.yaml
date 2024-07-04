@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: db-node
-          image: ogechik/challenge_db
+          image: "{{.Values.dbImage.name}}:{{.Values.dbImage.tag}}"
           env:
             - name: POSTGRES_DB
               valueFrom:
