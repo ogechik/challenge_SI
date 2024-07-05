@@ -8,3 +8,4 @@ dbName: challenge-db
 dbImage:
   name: ogechik/challenge_db
   tag: latest
+appHost: a3799251532fb4731a4d7f2eab62d8dc-1778588419.eu-west-3.elb.amazonaws.com
