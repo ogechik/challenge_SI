@@ -67,7 +67,7 @@ jobs:
         run: |
           helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
           helm repo update
-          helm install nginx-ingress ingress-nginx/ingress-nginx
+          helm install nginx-ingress ingress-nginx/ingress-nginx --replace --namespace ingress-nginx
           helm upgrade --install challenge-release ./challenge_si_app --values ./challenge_si_app/values.yaml
 
       - name: Make migrations
