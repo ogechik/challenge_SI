@@ -2,11 +2,18 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{.Values.appService.name}}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-west-3:737006063794:certificate/276499f7-a37c-47c9-a793-fab1cd5a1ff0
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
 spec:
   type: LoadBalancer
   ports:
-    - protocol: TCP
+    - name: http
       port: 80
+      targetPort: 8000
+    - name: https
+      port: 443
       targetPort: 8000
   selector:
     app: {{ .Values.appName }}
