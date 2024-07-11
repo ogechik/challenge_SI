@@ -5,6 +5,7 @@ metadata:
   labels:
     app: {{.Values.appName}}
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
         - kevo.topbetips.com
